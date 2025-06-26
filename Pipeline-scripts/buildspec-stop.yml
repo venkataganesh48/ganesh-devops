@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Preparing to stop EC2 instance..."
+      - cd pipeline-scripts
+  build:
+    commands:
+      - chmod +x stop_ec2.sh
+      - ./stop_ec2.sh

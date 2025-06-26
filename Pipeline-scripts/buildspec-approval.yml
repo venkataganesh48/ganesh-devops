@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Preparing to send approval email..."
+      - cd Pipeline-scripts
+  build:
+    commands:
+      - chmod +x send_approval_email.sh
+      - ./send_approval_email.sh
