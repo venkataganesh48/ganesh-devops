@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - cd EC2-adv-level
+      - cd EC2-adv-level-1
       - chmod +x ec2-action.sh
   build:
     commands:
