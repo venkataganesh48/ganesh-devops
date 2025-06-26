@@ -1,0 +1,10 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - cd EC2-adv-level
+      - chmod +x ec2-action.sh
+  build:
+    commands:
+      - ./ec2-action.sh stop
