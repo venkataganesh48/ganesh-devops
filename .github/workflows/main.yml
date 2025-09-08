@@ -1,8 +1,8 @@
 name: Launch EC2 Instance
 
 on:
-  workflow_dispatch:   # Trigger manually from GitHub Actions UI
-  push:                # Optional: trigger when pushing code
+  workflow_dispatch:
+  push:
     branches:
       - main
 
@@ -23,11 +23,11 @@ jobs:
 
       - name: Launch EC2 Instance
         run: |
-          run: echo "Launching EC2 instance..."
+          echo "Launching EC2 instance..."
           aws ec2 run-instances \
-            --image-id ami-0861f4e788f5069dd \ # Example: Amazon Linux 2 AMI (update per region)
+            --image-id ami-0861f4e788f5069dd \   # ✅ no backslash before the comment
             --count 1 \
             --instance-type t2.micro \
-            --key-name  etoe10 \
+            --key-name etoe10 \
             --security-group-ids sg-0aa256cd8486e41ad \
             --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=GitHubEC2}]'
