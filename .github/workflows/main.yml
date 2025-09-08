@@ -1,0 +1,33 @@
+name: Launch EC2 Instance
+
+on:
+  workflow_dispatch:   # Trigger manually from GitHub Actions UI
+  push:                # Optional: trigger when pushing code
+    branches:
+      - main
+
+jobs:
+  launch-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Launch EC2 Instance
+        run: |
+          echo "Launching EC2 instance..."
+          aws ec2 run-instances \
+            --image-id ami-0861f4e788f5069dd \ # Example: Amazon Linux 2 AMI (update per region)
+            --count 1 \
+            --instance-type t2.micro \
+            --key-name  etoe10 \
+            --security-group-ids sg-0aa256cd8486e41ad \
+            --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=GitHubEC2}]'
