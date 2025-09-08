@@ -23,7 +23,7 @@ jobs:
 
       - name: Launch EC2 Instance
         run: |
-          echo "Launching EC2 instance..."
+          run: echo "Launching EC2 instance..."
           aws ec2 run-instances \
             --image-id ami-0861f4e788f5069dd \ # Example: Amazon Linux 2 AMI (update per region)
             --count 1 \
